@@ -5,8 +5,8 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import React from 'react'
 
-const name = 'Shuji Takeda'
-export const siteTitle = 'Shuji Takeda\'Blog with Next.js'
+const name = '@takeshuhu'
+export const siteTitle = '@takeshushu\'Blog with Next.js'
 
 export default function Layout({
    children, home 
