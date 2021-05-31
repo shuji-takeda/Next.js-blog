@@ -1,26 +1,57 @@
-import Head from 'next/head';
-import Layout , {siteTitle} from '../components/layout';
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link';
+import Head from "next/head";
+import Link from "next/link";
+import Layout from "components/layout";
 
-export default function Introduce(){
-    return (
-        <Layout>
-        <Head>
-          <title>{siteTitle}</title>
-        </Head>
-        <section className={utilStyles.headingMd}>
-          <p>システムエンジニア２年目のぺーペーです。<br />仕事では、JavaとJavaScriptで開発をしています。</p>
-          <p>個人的に、フロントエンドを自主学習中で、勉強したこと、ガジェットなど五月雨にアウトプットしてきます。</p>
-          <p>宜しくおねがいします。</p>
-        </section>
-        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-          <h2 className={utilStyles.headingLg}>
-              <Link href='https://twitter.com/takeshshuhu'>
-              <a>https://twitter.com/takeshshuhu</a>
+export default function Introduce() {
+  return (
+    <Layout>
+      <Head>
+        <title>@takeshushu's Profile</title>
+      </Head>
+      <main>
+        <div className=" container mx-auto p-5 grid grid-cols-1">
+          <div className="flex items-start p-10">
+            <div className=" w-4/12">
+              <Link href="/">
+                <a>
+                  <img
+                    src="https://obs.line-scdn.net/r/avatar/share/68895f9d9e764ada865ed816be35b31d__full.png"
+                    alt="profile"
+                    className="w-full rounded-full"
+                  />
+                </a>
               </Link>
-          </h2>
-        </section>
-      </Layout>
-    )
+            </div>
+            <div className="">
+              <div>
+                <p className=" text-base">
+                  システムエンジニア2年目
+                  <br />
+                  仕事では、Java、Javascriptを使用しています。
+                </p>
+                <p>
+                  個人で、Typescript、Next.js、React
+                  nativeなどを勉強しております。
+                </p>
+                <p className=" text-base">
+                  ・Java
+                  <br />
+                  ・TypeScript
+                  <br />
+                  ・Next.js
+                  <br />
+                  ・React
+                </p>
+                <p className=" text-base">
+                  技術、ガジェットなど学んだことを、OutPutしてきます。
+                  <br />
+                  ゆるーく、お願いします
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </Layout>
+  );
 }
