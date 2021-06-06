@@ -30,6 +30,9 @@ yarn-error.log*
 # use local only
 tryAnything.tsx
 [slug].tsx
+editingLayout.tsx
+introduce.tsx
+/posts
 
 .hg
 .git

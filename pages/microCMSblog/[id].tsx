@@ -10,11 +10,11 @@ dayjs.extend(timezone);
 export default function BlogId({
   blog,
 }: {
-  blog: {title: string; publishedAt: string; content: string};
+  blog: { title: string; publishedAt: string; content: string };
 }) {
   return (
     <Layout>
-      <main>
+      <main className="blog">
         <h1 className={utilStyles.title}>{blog.title}</h1>
         <p className={utilStyles.publishedAt}>
           {dayjs.utc(blog.publishedAt).tz("Asia/Tokyo").format("YYYY/MM/DD")}
@@ -23,7 +23,7 @@ export default function BlogId({
           dangerouslySetInnerHTML={{
             __html: `${blog.content}`,
           }}
-          className={utilStyles.post}
+          className={utilStyles.blog}
         />
       </main>
     </Layout>
@@ -32,17 +32,18 @@ export default function BlogId({
 
 export const getStaticPaths = async () => {
   const key = {
-    headers: {"X-API-KEY": process.env.API_KEY},
+    headers: { "X-API-KEY": process.env.API_KEY },
   };
-
+  // @ts-ignore
   const data = await fetch("https://takeshu-blog.microcms.io/api/v1/blog", key)
     .then((res) => res.json())
     .catch(() => null);
   // @ts-ignore
   const paths = data.contents.map((content) => `/microCMSblog/${content.id}`);
-  return {paths, fallback: false};
+  return { paths, fallback: false };
 };
 
+//@ts-ignore
 export const getStaticProps = async (context) => {
   const id = context.params.id;
   const key = {
@@ -50,7 +51,7 @@ export const getStaticProps = async (context) => {
       "X-API-KEY": process.env.API_KEY,
     },
   };
-
+  //@ts-ignore
   const data = await fetch(
     "https://takeshu-blog.microcms.io/api/v1/blog/" + id,
     key
@@ -64,4 +65,4 @@ export const getStaticProps = async (context) => {
   };
 };
 
-interface Blog {}
+// interface Blog {}
