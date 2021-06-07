@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .js,.ts,.tsx"
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "date-fns": "^2.11.1",
@@ -31,6 +32,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
     "postcss": "^8.2.15",
     "prettier": "^2.3.1",
     "tailwindcss": "^2.1.2",
