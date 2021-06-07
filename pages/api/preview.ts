@@ -1,4 +1,6 @@
-export default async (req, res) => {
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query.slug) {
     return res.status(404).end();
   }

@@ -4,7 +4,6 @@ import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
 import { GetStaticProps } from "next";
-import { getAllBlogData } from "lib/blog";
 
 export default function Home({
   blog,
