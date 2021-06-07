@@ -8,8 +8,8 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "checkJs": true,
     "allowJs": true,
+    "strict": true,
     "skipLibCheck": true,
-    "strict": true,\
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "strictNullChecks": true,
