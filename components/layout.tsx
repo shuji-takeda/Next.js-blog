@@ -9,9 +9,11 @@ export const siteTitle = "@takeshushu'Blog with Next.js";
 export default function EditingLayout({
   children,
   home,
+  title,
 }: {
   children: React.ReactNode;
   home?: boolean;
+  title?: string;
 }) {
   return (
     <div>
@@ -32,8 +34,10 @@ export default function EditingLayout({
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="title" content={title} />
+        <title>{title}</title>
       </Head>
-      <div className="grid grid-cols-1">
+      <div className="grid grid-cols-1 min-h-full auto-rows-auto">
         <div>
           <header className="w-screen bg-black bg-opacity-90">
             <div className="object-center">
@@ -47,7 +51,7 @@ export default function EditingLayout({
             </div>
           </header>
         </div>
-        <div className="grid grid-cols-1 pb-5 xl:grid-cols-8">
+        <div className="grid grid-cols-1 pb-5 min-h-full xl:grid-cols-8">
           <div className="md:col-span-2"></div>
           <div className="col-span-4 p-5">
             <main>{children}</main>
@@ -59,7 +63,7 @@ export default function EditingLayout({
               </div>
             )}
           </div>
-          <div className="p-20 md:col-span-2 xl:p-3">
+          <div className="p-20 md:col-span-2 min-h-full xl:p-3">
             <div className="grid grid-cols2 border-gray-100 border p-1 rounded shadow-xl bg-white">
               <div className="grid grid-cols-7">
                 <div className="col-span-2">
@@ -128,7 +132,7 @@ export default function EditingLayout({
             </div>
           </div>
         </div>
-        <div className="bg-gray-500 py-10 border-black border-t-1">
+        <div className="bg-gray-500 py-10 border-black border-t-1 grid">
           <footer className="w-screen">
             <div className=" mr-auto flex-row">
               <p className="text-center text-base md:text-lg">

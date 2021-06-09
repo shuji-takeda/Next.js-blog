@@ -1,15 +1,23 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
-import { getSortedPostsData } from "../lib/posts";
+import Layout, {siteTitle} from "../components/layout";
+import {getSortedPostsData} from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
-import { GetStaticProps } from "next";
+import {GetStaticProps} from "next";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+export const author = "takeshushu";
 
 export default function Home({
   blog,
 }: {
   blog: {
-    date: string;
+    publishedAt: string;
     title: string;
     id: string;
   }[];
@@ -23,9 +31,24 @@ export default function Home({
         <div>
           <ul>
             {blog.map((blog) => (
-              <li key={blog.id} className="p-2">
+              <li key={blog.id} className="p-5 cursor-pointer">
                 <Link href={`/microCMSblog/${blog.id}`}>
-                  <a>{blog.title}</a>
+                  <div className="border-black border-2 border-opacity-25 shadow-2xl p-5 hover:bg-gray-400 hover:bg-opacity-30">
+                    <a>
+                      <h1 className="text-center text-3xl font-bold font-serif p-2">
+                        {blog.title}
+                      </h1>
+                      <div className="flex flex-row">
+                        <p className="pr-3">
+                          {dayjs
+                            .utc(blog.publishedAt)
+                            .tz("Asia/Tokyo")
+                            .format("YYYY/MM/DD")}
+                        </p>
+                        <p>{author}</p>
+                      </div>
+                    </a>
+                  </div>
                 </Link>
               </li>
             ))}
@@ -48,9 +71,8 @@ export default function Home({
 // CMSより全データを取得する
 export const getStaticProps = async () => {
   const key = {
-    headers: { "X-API-KEY": process.env.API_KEY },
+    headers: {"X-API-KEY": process.env.API_KEY || ""},
   };
-  //@ts-ignore
   const data = await fetch("https://takeshu-blog.microcms.io/api/v1/blog", key)
     .then((res) => res.json())
     .catch(() => null);
