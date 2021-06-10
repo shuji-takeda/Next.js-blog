@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import utilStyles from "../../styles/util.module.scss";
-import {GetStaticProps} from "next";
+import { GetStaticProps } from "next";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -25,7 +25,7 @@ interface Props {
 export default function BlogId({
   blog,
 }: {
-  blog: {title: string; publishedAt: string; content: string};
+  blog: { title: string; publishedAt: string; content: string };
 }) {
   return (
     <Layout title={blog.title}>
@@ -51,7 +51,7 @@ export default function BlogId({
 
 export const getStaticPaths = async () => {
   const key = {
-    headers: {"X-API-KEY": process.env.API_KEY || ""},
+    headers: { "X-API-KEY": process.env.API_KEY || "" },
   };
 
   const data: Contents = await fetch(
@@ -61,10 +61,10 @@ export const getStaticPaths = async () => {
     .then((res) => res.json())
     .catch(() => null);
   const paths = data.contents.map((content) => `/microCMSblog/${content.id}`);
-  return {paths, fallback: false};
+  return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context: {params: {id: string}}) => {
+export const getStaticProps = async (context: { params: { id: string } }) => {
   const id = context.params.id;
   const key = {
     headers: {

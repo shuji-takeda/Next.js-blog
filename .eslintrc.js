@@ -23,7 +23,7 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "react/react-in-jsx-scope": "off",
-    "prettier/prettier": "w",
+    "prettier/prettier": "error",
     "react/no-unescaped-entities": 0,
   },
   settings: {
