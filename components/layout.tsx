@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const name = "@takeshuhu";
-export const siteTitle = "@takeshushu'Blog with Next.js";
+export const siteTitle = "@takeshushu'Blog";
 
 export default function EditingLayout({
   children,
@@ -24,15 +24,25 @@ export default function EditingLayout({
         />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="Next.js+TypeScript+TailwindCss+MicroCmsで技術ブログを作成tutorial"
+        />
+        <meta charSet="utf-8" />
+        <meta name="og:title" content={siteTitle} />
+        <meta
+          property="og:description"
+          content="Next.js+TypeScript+TailwindCss+MicroCmsで技術ブログを作成tutorial"
         />
         <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+          property="og:type"
+          content="enginnering next typescript tailwind microcms"
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta property="og:url" content="microCMSblog/lyk9s3zka0z" />
+        <meta
+          property="og:image"
+          content="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/279/panda_1f43c.png"
+        />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:locale" content="ja_JP" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="title" content={title} />
         <title>{title}</title>
