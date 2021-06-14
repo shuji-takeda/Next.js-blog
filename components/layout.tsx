@@ -37,7 +37,7 @@ export default function EditingLayout({
         <meta name="title" content={title} />
         <title>{title}</title>
       </Head>
-      <div className="grid grid-cols-1 min-h-full auto-rows-auto">
+      <div className="grid grid-cols-1 min-h-full auto-rows-auto w-screen">
         <div>
           <header className="w-screen bg-black bg-opacity-90">
             <div className="object-center">

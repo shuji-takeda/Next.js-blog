@@ -33,6 +33,6 @@ img {
 
 @layer components {
   .blog {
-    @apply bg-white;
+    @apply bg-white px-4;
   }
 }
