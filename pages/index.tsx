@@ -74,15 +74,6 @@ export default function Home({
   );
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   // const allPostsData = getSortedPostsData();
-//   const allBlogData = getAllBlogData();
-//   return {
-//     props: {
-//       allBlogData,
-//     },
-//   };
-// };
 // CMSより全データを取得する
 export const getStaticProps = async () => {
   const key = {
