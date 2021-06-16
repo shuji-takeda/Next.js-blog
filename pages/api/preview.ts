@@ -10,7 +10,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   )
     .then((res) => res.json())
     .catch((error) => null);
-
   if (!content) {
     return res.status(401).json({ message: "Invalid slug" });
   }

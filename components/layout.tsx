@@ -10,10 +10,12 @@ export default function EditingLayout({
   children,
   home,
   title,
+  preview,
 }: {
   children: React.ReactNode;
   home?: boolean;
   title?: string;
+  preview?: boolean;
 }) {
   return (
     <div>
@@ -62,7 +64,15 @@ export default function EditingLayout({
           </header>
         </div>
         <div className="grid grid-cols-1 pb-5 min-h-full xl:grid-cols-8">
-          <div className="md:col-span-2"></div>
+          <div className="md:col-span-2">
+            {preview && (
+              <div className="bg-gray-400 bg-opacity-30 pl-5">
+                <p className="p-3 font-semibold text-4xl italic text-opacity-50">
+                  preview
+                </p>
+              </div>
+            )}
+          </div>
           <div className="col-span-4 p-5">
             <main>{children}</main>
             {!home && (

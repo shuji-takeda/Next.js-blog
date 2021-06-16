@@ -18,10 +18,6 @@ interface Article {
   body: string;
 }
 
-interface Props {
-  articles: Article[];
-}
-
 export default function BlogId({
   blog,
 }: {
