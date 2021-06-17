@@ -6,7 +6,11 @@
         "request": "attach",
         "name": "Launch Program",
         "skipFiles": ["<node_internals>/**"],
-        "port": 9229
+        "port": 9229,
+        "resolveSourceMapLocations": [
+          "${workspaceFolder}/**",
+          "!**/node_modules/**"
+        ]
       }
     ]
   }

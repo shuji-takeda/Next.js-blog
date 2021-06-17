@@ -3,6 +3,9 @@
 # vscode
 /.vscode
 
+# husky
+/.husky
+
 # dependencies
 /node_modules
 /.pnp

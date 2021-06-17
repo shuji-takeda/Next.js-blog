@@ -2,23 +2,11 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import Layout from "components/layout";
-import Image from "next/image";
-import utilStyles from "../styles/util.module.scss";
+import utilStyles from "../../../styles/util.module.scss";
+import { getAllBlog, getPreviewBlog } from "lib/api";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
-
-const author = "@takeshushu";
-
-interface Contents {
-  contents: Article[];
-}
-
-interface Article {
-  id: string;
-  title: string;
-  body: string;
-}
 
 export default function BlogSlug({
   blog,
@@ -56,38 +44,22 @@ export default function BlogSlug({
 }
 
 export const getStaticPaths = async () => {
-  const key = {
-    headers: { "X-API-KEY": process.env.API_KEY || "" },
-  };
-  const test = process.env.API_KEY;
-  console.log("slug-getStaticPaths:  " + test);
-
-  const data: Contents = await fetch(
-    "https://takeshu-blog.microcms.io/api/v1/blog",
-    key
-  )
-    .then((res) => res.json())
-    .catch(() => null);
-
-  const paths = data.contents.map((content) => `/${content.id}`);
+  const data = await getAllBlog();
+  const paths =
+    data.contents.map((content) => `/microCMSblog/preview/${content.id}`) || [];
   return { paths, fallback: true };
 };
 
 export const getStaticProps = async (context: {
-  params: { id: string; slug: string };
-  previewData: { draftKey: string };
+  previewData: { draftKey: string; slug: string };
 }) => {
-  const slug = context.params?.slug;
-  const draftKey = context.previewData?.draftKey;
-  const blog = await fetch(
-    `https://takeshu-blog.microcms.io/api/v1/blog/${slug}${
-      draftKey !== undefined ? `?draftKey=${draftKey}` : ""
-    }`,
-    { headers: { "X-API-KEY": process.env.API_KEY || "" } }
-  ).then((res) => res.json());
+  const blog = await getPreviewBlog(
+    context.previewData.slug,
+    context.previewData.draftKey
+  );
   return {
     props: {
-      blog,
+      blog: blog,
     },
   };
 };
