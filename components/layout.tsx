@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const name = "@takeshuhu";
+// const name = "@takeshuhu";
 export const siteTitle = "@takeshushu'Blog";
 
 export default function EditingLayout({
