@@ -3,17 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const name = "@takeshuhu";
-export const siteTitle = "@takeshushu'Blog with Next.js";
+// const name = "@takeshuhu";
+export const siteTitle = "@takeshushu'Blog";
 
 export default function EditingLayout({
   children,
   home,
   title,
+  preview,
 }: {
   children: React.ReactNode;
   home?: boolean;
   title?: string;
+  preview?: boolean;
 }) {
   return (
     <div>
@@ -24,20 +26,30 @@ export default function EditingLayout({
         />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="Next.js+TypeScript+TailwindCss+MicroCmsで技術ブログを作成tutorial"
+        />
+        <meta charSet="utf-8" />
+        <meta name="og:title" content={siteTitle} />
+        <meta
+          property="og:description"
+          content="Next.js+TypeScript+TailwindCss+MicroCmsで技術ブログを作成tutorial"
         />
         <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+          property="og:type"
+          content="enginnering next typescript tailwind microcms"
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta property="og:url" content="microCMSblog/lyk9s3zka0z" />
+        <meta
+          property="og:image"
+          content="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/279/panda_1f43c.png"
+        />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:locale" content="ja_JP" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="title" content={title} />
         <title>{title}</title>
       </Head>
-      <div className="grid grid-cols-1 min-h-full auto-rows-auto">
+      <div className="grid grid-cols-1 min-h-full auto-rows-auto w-screen">
         <div>
           <header className="w-screen bg-black bg-opacity-90">
             <div className="object-center">
@@ -52,7 +64,15 @@ export default function EditingLayout({
           </header>
         </div>
         <div className="grid grid-cols-1 pb-5 min-h-full xl:grid-cols-8">
-          <div className="md:col-span-2"></div>
+          <div className="md:col-span-2">
+            {preview && (
+              <div className="bg-gray-400 bg-opacity-30 pl-5">
+                <p className="p-3 font-semibold text-4xl italic text-opacity-50">
+                  preview
+                </p>
+              </div>
+            )}
+          </div>
           <div className="col-span-4 p-5">
             <main>{children}</main>
             {!home && (

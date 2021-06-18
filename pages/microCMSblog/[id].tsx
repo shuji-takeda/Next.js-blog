@@ -3,29 +3,15 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import utilStyles from "../../styles/util.module.scss";
-import {GetStaticProps} from "next";
+import { getAllBlog, getPostBlog } from "lib/api";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-interface Contents {
-  contents: Article[];
-}
-
-interface Article {
-  id: string;
-  title: string;
-  body: string;
-}
-
-interface Props {
-  articles: Article[];
-}
-
 export default function BlogId({
   blog,
 }: {
-  blog: {title: string; publishedAt: string; content: string};
+  blog: { title: string; publishedAt: string; content: string };
 }) {
   return (
     <Layout title={blog.title}>
@@ -50,39 +36,19 @@ export default function BlogId({
 }
 
 export const getStaticPaths = async () => {
-  const key = {
-    headers: {"X-API-KEY": process.env.API_KEY || ""},
-  };
-
-  const data: Contents = await fetch(
-    "https://takeshu-blog.microcms.io/api/v1/blog",
-    key
-  )
-    .then((res) => res.json())
-    .catch(() => null);
-  const paths = data.contents.map((content) => `/microCMSblog/${content.id}`);
-  return {paths, fallback: false};
+  const allblog = await getAllBlog();
+  const paths = allblog.contents.map(
+    (content) => `/microCMSblog/${content.id}`
+  );
+  return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context: {params: {id: string}}) => {
+export const getStaticProps = async (context: { params: { id: string } }) => {
   const id = context.params.id;
-  const key = {
-    headers: {
-      "X-API-KEY": process.env.API_KEY || "",
-    },
-  };
-
-  const data = await fetch(
-    "https://takeshu-blog.microcms.io/api/v1/blog/" + id,
-    key
-  )
-    .then((res) => res.json())
-    .catch(() => null);
+  const data = await getPostBlog(id);
   return {
     props: {
       blog: data,
     },
   };
 };
-
-// interface Blog {}
