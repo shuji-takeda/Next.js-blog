@@ -3,9 +3,7 @@ export interface Article {
   title: string;
   content: string;
   publishedAt: string;
-  category: string[];
-}
-
-export interface Contents {
-  contents: Article[];
+  category: string;
+  tags: string[];
+  image?: string;
 }

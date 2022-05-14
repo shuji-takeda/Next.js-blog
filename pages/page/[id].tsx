@@ -1,12 +1,9 @@
 import React from 'react';
-
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-
-import { getAllBlog } from 'lib/api';
+import { GetStaticPropsContext } from 'next';
 
 import { Article } from 'domain/type';
+import { getAllBlog, getBlogs } from 'lib/api';
+
 import { TagsType } from '@/components/tags';
 
 import Head from '@/components/headTag';
@@ -15,9 +12,12 @@ import CardBlogContent from '@/components/cardBlogContent';
 import Paging from '@/components/paging';
 import Tags from '@/components/tags';
 import FooterTag from '@/components/footerTag';
+import { Constants } from 'lib/constants';
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
+export type Props = {
+  blogs: Article[];
+  totalCount: number;
+};
 
 const category: TagsType[] = [
   { name: 'Java' },
@@ -43,15 +43,9 @@ const tag: TagsType[] = [
   { name: 'Express' },
 ];
 
-export type Props = {
-  blogs: Article[];
-  totalCount: number;
-};
-
-export default function Home(props: Props) {
+export default function BlogPageId(props: Props) {
   const blogList = props.blogs;
   const description = 'description';
-
   return (
     <>
       <Head />
@@ -64,12 +58,10 @@ export default function Home(props: Props) {
               <ul className="list-none">
                 {blogList.map((blog) => (
                   <li className="mt-2" key={blog.id}>
-                    <a href={`/${blog.id}`}>
-                      <CardBlogContent
-                        title={blog.title}
-                        description={description}
-                      />
-                    </a>
+                    <CardBlogContent
+                      title={blog.title}
+                      description={description}
+                    />
                   </li>
                 ))}
               </ul>
@@ -89,16 +81,33 @@ export default function Home(props: Props) {
   );
 }
 
-// CMSより全データを取得する
-export const getStaticProps = async () => {
-  console.log('index.tsx : getStaticProps');
-  const response = await getAllBlog();
-  const blogs = response.contents;
-  const pagingSize = response.totalCount;
+export const getStaticPaths = async () => {
+  console.log('[id].tsx : getStaticPaths');
+  const blogs = await getAllBlog();
+
+  const range = (start: number, end: number) =>
+    [...Array(end - start + 1)].map((_, i) => start + i);
+
+  const paths = range(1, Math.ceil(blogs.totalCount / Constants.PER_PAGE)).map(
+    (repo) => `/page/${repo}`
+  );
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps = async (
+  context: GetStaticPropsContext<{ id: string }>
+) => {
+  console.log('[id].tsx : getStaticProps');
+  const id = context.params?.id;
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const response = await getBlogs(id!);
+
   return {
     props: {
-      blogs,
-      totalCount: pagingSize,
+      blogs: response.contents,
+      totalCount: response.totalCount,
     },
   };
 };

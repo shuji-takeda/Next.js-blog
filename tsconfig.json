@@ -23,6 +23,6 @@
     "jsx": "preserve",
     "outDir": "./dist"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/posts/[id].tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/posts/[id].tsx", "lib/render-toc.js"],
   "exclude": ["node_modules"]
 }
