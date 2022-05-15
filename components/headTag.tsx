@@ -58,6 +58,13 @@ export default function HeadTag(props: MetaData) {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
       />
+
+      {/* Google Adsense */}
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8396972244544340"
+        crossOrigin="anonymous"
+      ></script>
     </Head>
   );
 }
