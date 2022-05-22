@@ -29,25 +29,11 @@ const category: TagsType[] = [
   { name: 'Next' },
   { name: 'Vue' },
   { name: 'Express' },
-  { name: 'SpringBoot' },
-  { name: 'Mysql' },
-  { name: 'Oracle' },
-  { name: 'React' },
-  { name: 'Next' },
-  { name: 'Vue' },
-  { name: 'Express' },
 ];
 
 const tag: TagsType[] = [
   { name: 'Tags' },
   { name: 'Spring' },
-  { name: 'SpringBoot' },
-  { name: 'Mysql' },
-  { name: 'Oracle' },
-  { name: 'React' },
-  { name: 'Next' },
-  { name: 'Vue' },
-  { name: 'Express' },
   { name: 'SpringBoot' },
   { name: 'Mysql' },
   { name: 'Oracle' },
@@ -73,13 +59,16 @@ export default function Home(props: Props) {
       <main className="container mx-auto mt-5">
         <div className="flex flex-col sm:flex-row">
           <div id="container" className=" w-full mx-auto sm:w-1/2 sm:mr-0">
-            <h1 className="px-3 pb-3 text-lg">記事一覧</h1>
+            <h1 className="px-3 pb-3 text-lg sm:text-4xl">記事一覧</h1>
             <div id="latestContentsArea" className="">
               <ul className="list-none">
                 {blogList.map((blog) => (
-                  <li className="mt-6" key={blog.id}>
+                  <li className="mt-2" key={blog.id}>
                     <a href={`/${blog.id}`}>
-                      <CardBlogContent article={blog} />
+                      <CardBlogContent
+                        title={blog.title}
+                        description={description}
+                      />
                     </a>
                   </li>
                 ))}

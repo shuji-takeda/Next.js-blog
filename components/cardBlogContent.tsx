@@ -1,44 +1,37 @@
 import React from 'react';
-import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
-import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
+import {
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+} from '@mui/material';
 
-import { Article } from 'domain/type';
-import dayjs from 'dayjs';
+const defaultImagePath = '/images/background.jpg';
 
-export default function CardBlogContent(props: { article: Article }) {
-  const { title, publishedAt, category, tags } = props.article;
-  let isCategory = true;
-  if (category.length === 0) isCategory = false;
-  console.log(category);
-  //console.log(tags);
+export type cardBlogContentType = {
+  imagePath?: string;
+  title: string;
+  description: string;
+};
+
+export default function CardBlogContent(props: cardBlogContentType) {
+  const { imagePath, title, description } = props;
   return (
-    <Card className="mx-auto sm:ml-auto max-w-xs backgroundImage h-40 sm:max-w-2xl sm:h-64">
-      <CardActionArea className=" min-h-full">
+    <Card className="mx-auto max-w-xs sm:max-w-2xl">
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          image={imagePath ? imagePath : defaultImagePath}
+          alt="green iguana"
+        />
         <CardContent>
-          <Typography className="text-lg sm:text-2xl">{title}</Typography>
-          <Typography variant="body2" color="text.secondary" className="mb-2">
-            {dayjs.utc(publishedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm')}
+          <Typography gutterBottom variant="h5" component="div">
+            {title}
           </Typography>
-          {isCategory ? (
-            <>
-              <Typography
-                sx={{ mb: 1 }}
-                className="px-1 text-sm text-blue-400 text-opacity-70 sm:text-lg sm:mb-2"
-              >
-                {category}
-              </Typography>
-              <ul className="flex">
-                {tags.map((tag, index) => (
-                  <li key={index} className="flex-row mr-1">
-                    <LocalOfferRoundedIcon fontSize="small" />
-                    <span className="text-xs text-blue-400 text-opacity-70 sm:text-base">
-                      {tag}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : null}
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
