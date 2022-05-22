@@ -15,19 +15,15 @@ export default function Tags(props: TagsProps) {
   return (
     <div>
       {title ? (
-        <h3 className=" bg-black text-white text-base m-2 sm:text-xl">
-          {title}
-        </h3>
+        <h3 className=" bg-gray-100 text-base mb-2 mx-2 sm:text-xl">{title}</h3>
       ) : null}
       <div id="categoryContainer" className="mx-2 flex sm:flex-1">
         <ul className="text-xs list-none list-outside flex flex-wrap sm:text-base">
           {tags.map((tag, index) => {
             return (
               <li className=" mx-1" key={index}>
-                <div>
-                  <StyleTwoToneIcon fontSize="small" />
-                  <span>{tag.name}</span>
-                </div>
+                <StyleTwoToneIcon fontSize="small" />
+                <span>{tag.name}</span>
               </li>
             );
           })}
