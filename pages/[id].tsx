@@ -45,7 +45,7 @@ const tag: TagsType[] = [
   { name: 'Express' },
 ];
 
-const defaultImagePath = '/images/milad-fakurian-HE1_K4_-QT8-unsplash.jpg';
+const defaultImagePath = '/images/background.jpg';
 
 export type Props = {
   article: Article;
@@ -63,13 +63,19 @@ export default function BlogId(props: Props) {
     <>
       <Head />
       <HeaderTag />
-      <main className="container mx-auto mb-5">
+      <main className="container mx-auto mt-2 mb-5 sm:mt-5">
+        <div className="mx-auto max-w-lg sm:max-w-3xl">
+          <Image
+            src={defaultImagePath}
+            layout="responsive"
+            width={50}
+            height={25}
+          />
+        </div>
         <div className="flex flex-col sm:flex-row">
           <div id="container" className=" w-full mx-auto sm:w-1/2 sm:mr-0">
-            <div id="title" className="backgroundImage h-40 sm:h-64">
-              <p className="text-2xl sm:text-4xl font-bold text-center py-20">
-                {article.title}
-              </p>
+            <div id="title">
+              <p className="text-xl font-bold">{article.title}</p>
             </div>
             <div id="postedAt">
               <p className=" text-sm text-gray-500">
