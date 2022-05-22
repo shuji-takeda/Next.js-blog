@@ -27,9 +27,6 @@ export default function HeadTag(props: MetaData) {
     : defaultImg;
 
   return (
-    // <head>
-    //   <meta name="viewport" content="initial-scale=1, width=device-width" />
-    // </head>
     <Head>
       {/* title */}
       <title>{title}</title>
@@ -38,14 +35,12 @@ export default function HeadTag(props: MetaData) {
         content="minimum-scale=1, initial-scale=1, width=device-width"
       />
       <link rel="canonical" href={url} />
-
       {/* OG */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content="https://english.yunomy.com/" />
       <meta property="og:image" content={imgUrl} />
       <meta property="og:site_name" content={title} />
-
       {/* twitter card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@yuno_miyako2" />
@@ -53,12 +48,10 @@ export default function HeadTag(props: MetaData) {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imgUrl} />
-
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
       />
-
       {/* Google Adsense */}
       <script
         async
