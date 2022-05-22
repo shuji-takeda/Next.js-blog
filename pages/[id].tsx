@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-// import utilStyles from '../styles/util.module.scss';
 import HeaderTag from '@/components/headerTag';
 import Head from '@/components/headTag';
 import FooterTag from '@/components/footerTag';
+import MainContents from '@/components/mainContents';
 import { getAllBlog, getBlogById } from 'lib/api';
 import { renderToc } from 'lib/render-toc';
 
@@ -79,13 +79,7 @@ export default function BlogId(props: Props) {
             <div className="mx-auto" id="mokuji">
               <TableOfContents toc={ankerList} />
             </div>
-            <div
-              id="mainContent"
-              dangerouslySetInnerHTML={{
-                __html: `${article.content}`,
-              }}
-              className={`mx-3 bg-gray-100`}
-            />
+            <MainContents article={article} />
           </div>
           <div className="w-screen flex flex-col sm:w-3/12">
             <Tags title="Category" tags={categoryList} />

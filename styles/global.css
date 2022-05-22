@@ -40,3 +40,45 @@ img {
 .backgroundImage {
   background-image: url('/images/milad-fakurian-HE1_K4_-QT8-unsplash.jpg');
 }
+
+.blog h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 40px 0 20px;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.blog h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 40px 0 16px;
+  border-bottom: 1px solid #ddd;
+}
+.blog h3 {
+  font-size: 1.17rem;
+}
+ .blog code {
+  color: #ff357f;
+  display: inline-block;
+}
+.blog pre {
+  background-color: #23241f;
+  color: #ddd;
+  overflow: auto;
+}
+.blog p {
+  line-height: 1.8;
+  letter-spacing: 0.2px;
+}
+.blog ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+.blog ul {
+  padding-left: 1.5em;
+}
+.blog span {
+  color: rgb(162, 60, 132);
+}
