@@ -64,7 +64,6 @@ export type Props = {
 
 export default function Home(props: Props) {
   const blogList = props.blogs;
-  const description = 'description';
 
   return (
     <>

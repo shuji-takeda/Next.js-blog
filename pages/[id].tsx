@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
@@ -11,14 +11,6 @@ import { renderToc } from 'lib/render-toc';
 
 import Tags, { TagsType } from '@/components/tags';
 import { Article } from 'domain/type';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-
-export type AnkerList = {
-  text: string;
-  id: string;
-};
 
 const categoryList: TagsType[] = [
   { name: 'Java' },
@@ -44,6 +36,14 @@ const tag: TagsType[] = [
   { name: 'Express' },
 ];
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+export type AnkerList = {
+  text: string;
+  id: string;
+};
+
 export type Props = {
   article: Article;
   ankerList: AnkerList[];
@@ -52,13 +52,11 @@ export type Props = {
 export default function BlogId(props: Props) {
   const article = props.article;
   const ankerList = props.ankerList;
-  useEffect(() => {
-    getAnker();
-  });
+  const description = createDescription(ankerList);
 
   return (
     <>
-      <Head />
+      <Head description={description} />
       <HeaderTag />
       <main className="container mx-auto mb-5">
         <div className="flex flex-col sm:flex-row">
@@ -115,9 +113,6 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
 };
 
 export const TableOfContents = ({ toc }: { toc: AnkerList[] }) => {
-  if (toc) {
-    console.log(toc);
-  }
   return (
     <>
       {toc ? (
@@ -140,20 +135,11 @@ export const TableOfContents = ({ toc }: { toc: AnkerList[] }) => {
   );
 };
 
-export const getAnker = () => {
-  const ankerList = document.querySelectorAll('h1');
-  ankerList.forEach((element) => {
-    const newElement = document.createElement('a');
-    const newContent = document.createTextNode(element.innerText);
-    newElement.appendChild(newContent);
-    newElement.setAttribute('href', '#' + element.id);
-
-    const parentDiv = document.getElementById('anker');
-
-    const indent = document.createElement('br');
-    if (parentDiv !== null) {
-      parentDiv.appendChild(newElement);
-      parentDiv.appendChild(indent);
-    }
+function createDescription(keyList: AnkerList[]): string {
+  if (!keyList) return '';
+  let description = '';
+  keyList.map((value) => {
+    description = description + ` ${value.text}`;
   });
-};
+  return description;
+}
