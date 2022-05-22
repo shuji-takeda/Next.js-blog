@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-import utilStyles from '../styles/util.module.scss';
+// import utilStyles from '../styles/util.module.scss';
 import HeaderTag from '@/components/headerTag';
 import Head from '@/components/headTag';
 import FooterTag from '@/components/footerTag';
-import Image from 'next/image';
 import { getAllBlog, getBlogById } from 'lib/api';
 import { renderToc } from 'lib/render-toc';
 
@@ -44,8 +43,6 @@ const tag: TagsType[] = [
   { name: 'Vue' },
   { name: 'Express' },
 ];
-
-const defaultImagePath = '/images/milad-fakurian-HE1_K4_-QT8-unsplash.jpg';
 
 export type Props = {
   article: Article;
@@ -87,7 +84,7 @@ export default function BlogId(props: Props) {
               dangerouslySetInnerHTML={{
                 __html: `${article.content}`,
               }}
-              className={`${utilStyles.blog} mx-3 bg-gray-100`}
+              className={`mx-3 bg-gray-100`}
             />
           </div>
           <div className="w-screen flex flex-col sm:w-3/12">
