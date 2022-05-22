@@ -27,9 +27,6 @@ export default function HeadTag(props: MetaData) {
     : defaultImg;
 
   return (
-    // <head>
-    //   <meta name="viewport" content="initial-scale=1, width=device-width" />
-    // </head>
     <Head>
       {/* title */}
       <title>{title}</title>
